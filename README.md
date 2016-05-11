@@ -1,3 +1,5 @@
+# nashorn-webpack-react-redux-boilerplate #
+
 Boilerplate featuring;
   - Server rendering using Nashorn.
   - Server built with Spring Boot.
