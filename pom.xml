@@ -7,7 +7,7 @@
 	<artifactId>boilerplate-nashorn</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
-        <name>nashorn-webpack-react-redux-boilerplate</name>
+	<name>nashorn-webpack-react-redux-boilerplate</name>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -29,6 +29,72 @@
 	</dependencies>
 
 	<build>
+		<plugins>
+			<!--
+				Handy plugin to install node & yarn so you don't have to.
+
+				Very useful for running on build server and when different
+				projects need different versions of node.
+
+				It will;
+					- install node & yarn
+					- run JS unit tests
+					- build JS
+			-->
+			<plugin>
+				<groupId>com.github.eirslett</groupId>
+				<artifactId>frontend-maven-plugin</artifactId>
+				<version>1.4</version>
+				<configuration>
+					<workingDirectory>src/main/webapp/react-app</workingDirectory>
+				</configuration>
+				<executions>
+					<execution>
+						<id>install node and yarn</id>
+						<goals>
+							<goal>install-node-and-yarn</goal>
+						</goals>
+						<configuration>
+							<nodeVersion>v7.8.0</nodeVersion>
+							<yarnVersion>v0.21.3</yarnVersion>
+						</configuration>
+					</execution>
+
+					<execution>
+						<id>yarn install</id>
+						<goals>
+							<goal>yarn</goal>
+						</goals>
+					</execution>
+
+					<execution>
+						<id>yarn test</id>
+						<goals>
+							<goal>yarn</goal>
+						</goals>
+						<phase>test</phase>
+						<configuration>
+							<arguments>test</arguments>
+						</configuration>
+					</execution>
+
+					<execution>
+						<id>yarn run build</id>
+						<goals>
+							<goal>yarn</goal>
+						</goals>
+						<configuration>
+							<arguments>build</arguments>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
 		<resources>
 			<resource>
 				<directory>src/main/resources</directory>
@@ -37,11 +103,5 @@
 				<directory>src/main/webapp/react-app/dist</directory>
 			</resource>
 		</resources>
-		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-		</plugins>
 	</build>
 </project>

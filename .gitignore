@@ -4,5 +4,7 @@
 /.settings/
 /.classpath
 /.project
+/src/main/webapp/react-app/yarn.lock
 /src/main/webapp/react-app/dist/
 /src/main/webapp/react-app/node_modules/
+/src/main/webapp/react-app/node/
